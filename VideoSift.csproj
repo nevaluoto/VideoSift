@@ -1,0 +1,61 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>VideoSift</RootNamespace>
+    <AssemblyName>VideoSift</AssemblyName>
+    <ApplicationIcon>VideoSift.ico</ApplicationIcon>
+    <PlatformTarget>x64</PlatformTarget>
+    <Platforms>x64</Platforms>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Configurations>Debug;Release;RLV Debug;RLV Release</Configurations>
+    <!-- Only ship the 64-bit LibVLC binaries -->
+    <VlcWindowsX86Enabled>false</VlcWindowsX86Enabled>
+    <VlcWindowsArm64Enabled>false</VlcWindowsArm64Enabled>
+    <!-- Lets 'dotnet build' compile the .resx files that contain images -->
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'RLV Debug'">
+    <DefineConstants>$(DefineConstants);DEBUG;RLVISION</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'RLV Release'">
+    <DefineConstants>$(DefineConstants);RLVISION</DefineConstants>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Design" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LibVLCSharp.WinForms" Version="3.10.2" />
+    <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.24" />
+    <PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
+  </ItemGroup>
+
+  <!-- Leave out LibVLC parts a local video viewer never uses (streaming/transcoding output, visualizations, scripting) -->
+  <ItemGroup>
+    <VlcWindowsX64ExcludeFiles Include="*.lib" />
+    <VlcWindowsX64ExcludeFiles Include="lua\%2A%2A" />
+    <VlcWindowsX64ExcludeFiles Include="plugins\access_output\%2A" />
+    <VlcWindowsX64ExcludeFiles Include="plugins\stream_out\%2A" />
+    <VlcWindowsX64ExcludeFiles Include="plugins\mux\%2A" />
+    <VlcWindowsX64ExcludeFiles Include="plugins\visualization\%2A" />
+    <VlcWindowsX64ExcludeFiles Include="plugins\services_discovery\%2A" />
+    <VlcWindowsX64ExcludeFiles Include="plugins\lua\%2A" />
+    <VlcWindowsX64ExcludeFiles Include="plugins\video_splitter\%2A" />
+    <VlcWindowsX64ExcludeFiles Include="plugins\keystore\%2A" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="LICENSE.txt" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="ReadMe.txt" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>
