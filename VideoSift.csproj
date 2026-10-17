@@ -11,21 +11,12 @@
     <PlatformTarget>x64</PlatformTarget>
     <Platforms>x64</Platforms>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <Configurations>Debug;Release;RLV Debug;RLV Release</Configurations>
+    <Configurations>Debug;Release</Configurations>
     <!-- Only ship the 64-bit LibVLC binaries -->
     <VlcWindowsX86Enabled>false</VlcWindowsX86Enabled>
     <VlcWindowsArm64Enabled>false</VlcWindowsArm64Enabled>
     <!-- Lets 'dotnet build' compile the .resx files that contain images -->
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)' == 'RLV Debug'">
-    <DefineConstants>$(DefineConstants);DEBUG;RLVISION</DefineConstants>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)' == 'RLV Release'">
-    <DefineConstants>$(DefineConstants);RLVISION</DefineConstants>
-    <Optimize>true</Optimize>
   </PropertyGroup>
 
   <ItemGroup>

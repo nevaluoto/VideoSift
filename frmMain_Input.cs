@@ -510,17 +510,6 @@ namespace VideoSift
 				}
 			}
 
-#if RLVISION
-			if( e.Control && e.KeyCode == Keys.N )
-			{
-				winApi.ToggleNumlock();
-				if( Console.NumberLock )
-					ShowStatusMessage( "NumLock OFF" );
-				else
-					ShowStatusMessage( "NumLock ON" );
-				e.Handled = true;
-			}
-#endif
 
 
 			// Control/Shift/Alt are not used below so skip the rest

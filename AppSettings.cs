@@ -54,11 +54,6 @@ namespace VideoSift
 
 	
 		// Appearance Group
-#if RLVISION
-		[Category( "Appearance" ), DisplayName( "Background color" ), DescriptionAttribute( "Sets the window background color." )]
-		[TypeConverter( typeof( EnumTypeConverter ) )]
-		public GrayColors ColorBackground { get; set; }
-#else
 		[XmlIgnore]
 		[Category( "Appearance" ), DisplayName( "Background color" ), DescriptionAttribute( "Sets the window background color." )]
 		public Color ColorBackground
@@ -68,7 +63,6 @@ namespace VideoSift
 		}
 		[Browsable( false )]
 		public SerializableColor ColorBackground_Serializable { get; set; }
-#endif
 		[XmlIgnore]
 		[Category( "Appearance" ), DisplayName( "Text label color" ), DescriptionAttribute( "Sets the font color of text labels." )]
 		public Color ColorLabelFront
@@ -96,7 +90,7 @@ namespace VideoSift
 		public Font LabelFont
 		{
 			get { return LabelFont_Serializable.ToFont(); }
-			set { LabelFont_Serializable = SerializableFont.FromFont( value ); }
+			set { LabelFont_Serializable = new SerializableFont( value ); }
 		}
 
 		[Category( "Appearance" ), DisplayName( "Transparent text labels" ), DescriptionAttribute( "Decides if text labels should have transparent or solid color background." )]
@@ -197,10 +191,6 @@ namespace VideoSift
 		[Category( "Display" ), DisplayName( "Enlarge small images" ), DescriptionAttribute( "Images smaller that the current view can be enlarged to fill the whole view. Hotkey: F4" )]
 		public bool EnlargeSmallImages { get; set; }
 
-#if RLVISION
-		[Category( "Display" ), DisplayName( "Auto move to best suited screen" ), DescriptionAttribute( "In a multi-monitor environment, if the application is in fullscreen mode the windows will automatically moves to the best suited monitor (based on aspect ratio) when changing picture." )]
-		public bool AutoMoveToScreen { get; set; }
-#endif
 
 		// System Group
 		[Category( "System" ), DisplayName( "Disable screensaver" ), DescriptionAttribute( "Disable any screensaver, sleep mode etc while the programis running. Restart is required if changed." )]
@@ -394,11 +384,7 @@ namespace VideoSift
 			DeleteMode = DeleteOptions.RecycleBin;
 
 			// Appearance Group
-#if RLVISION
-			ColorBackground = GrayColors.Col7;
-#else
 			ColorBackground = Color.Black;
-#endif
 			ColorLabelFront = Color.Gray;
 			ColorLabelBack = Color.Black;
 			ColorTransparentLabels = true;
@@ -430,9 +416,6 @@ namespace VideoSift
 			InfoLabelFormat = "(%c / %t) %f";
 			FullscreenHideCursor = true;
 			EnlargeSmallImages = false;
-#if RLVISION
-			AutoMoveToScreen = false;
-#endif
 			// System Group
 			PreventSleep = false;
 
@@ -522,25 +505,6 @@ namespace VideoSift
 		Skip,
 	}
 
-#if RLVISION
-	public enum GrayColors
-	{
-		[Description( "White" )]
-		Col1 = 255,
-		[Description( "Lighter Gray (30)" )]
-		Col2 = 191,
-		[Description( "Light Gray (40)" )]
-		Col3 = 98,
-		[Description( "Medium Gray (51)" )]
-		Col4 = 51,
-		[Description( "Dark Gray (98)" )]
-		Col5 = 40,
-		[Description( "Darker Gray (191)" )]
-		Col6 = 30,
-		[Description( "Black" )]
-		Col7 = 0,
-	}
-#endif
 
 }
 

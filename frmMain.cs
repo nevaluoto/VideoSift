@@ -117,19 +117,9 @@ namespace VideoSift
 			UpdateMenuEnabledDisabled();
 
 			// Attempt to load files or folders passed via command line
-			string[] args = Util.ParseArguments( Environment.CommandLine );
+			string[] args = Environment.GetCommandLineArgs();
 			if( args.Length > 0 ) AddFiles( args ); else ShowNextPic( 0 );
 
-#if DEBUG && RLVISION
-			// Development settings
-			settings.FileMode = FileOperations.Copy;
-			settings.DeleteMode = DeleteOptions.RemoveFromList;
-			settings.TargetFolder = @"t:\PhotoSift Output";
-			// Load test suite
-			AddFiles( new string[] { @"D:\grid.png", @"D:\grid2.png" } );
-			AddFiles( new string[] { @"D:\temp\icons temp\PicSort" } );
-			AddFiles( new string[] { @"D:\Temp\Comics" } );
-#endif
 		}
 
 		/// <summary>
@@ -146,11 +136,7 @@ namespace VideoSift
 			ShowHideLabels();
 
 			// Apply colors
-#if RLVISION
-			panelMain.BackColor = Color.FromArgb( 255, (int)settings.ColorBackground, (int)settings.ColorBackground, (int)settings.ColorBackground );
-#else
 			panelMain.BackColor = settings.ColorBackground;
-#endif
 			picCurrent.BackColor = Color.Transparent;
 			lblInfoLabel.ForeColor = settings.ColorLabelFront;
 			lblStatus.ForeColor = settings.ColorLabelFront;
@@ -399,41 +385,6 @@ namespace VideoSift
 			
 			UpdateInfoLabel();
 
-#if RLVISION
-			if( settings.AutoMoveToScreen && bFullScreen )
-			{
-				try
-				{
-					// move to screen best suited to current image's aspect ratio
-					// (the screen with the smallest difference between aspect ratios is the best fit)
-					SortedDictionary<float, int> diffs = new SortedDictionary<float, int>();
-					Screen currentScreen = Screen.FromControl( this );
-					for( int n = 0; n < Screen.AllScreens.Length; n++ )
-					{
-						float ar = (float)Screen.AllScreens[n].Bounds.Size.Height / Screen.AllScreens[n].Bounds.Size.Width;
-						if( !diffs.ContainsKey( Math.Abs( ar - CurrentAspectRatio ) ) )
-						{
-							diffs.Add( Math.Abs( ar - CurrentAspectRatio ), n );
-						}
-					}
-					if( diffs.Count > 1 )
-					{
-						foreach( float key in diffs.Keys )
-						{
-							if( Screen.AllScreens[diffs[key]].DeviceName != currentScreen.DeviceName )
-							{
-								MoveFullscreenToScreen( diffs[key] );
-							}
-							break;
-						}
-					}
-				}
-				catch( Exception ex )
-				{
-					Console.WriteLine( ex );
-				}
-			}
-#endif
 
 			UpdateMenuEnabledDisabled();
 			ResumeAutoAdvance();

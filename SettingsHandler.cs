@@ -106,11 +106,6 @@ namespace VideoSift
 			Style = f.Style;
 		}
 
-		public static SerializableFont FromFont( Font f )
-		{
-			return new SerializableFont( f );
-		}
-
 		public Font ToFont()
 		{
 			return new Font( FontFamily, Size, Style,
@@ -136,11 +131,6 @@ namespace VideoSift
 			this.R = color.R;
 			this.G = color.G;
 			this.B = color.B;
-		}
-
-		public static SerializableColor FromColor( Color color )
-		{
-			return new SerializableColor( color );
 		}
 
 		public Color ToColor()

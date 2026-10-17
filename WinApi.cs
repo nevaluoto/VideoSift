@@ -155,32 +155,11 @@ namespace VideoSift
 
 		public void PreventSleep()
 		{
-			if( SetThreadExecutionState( EXECUTION_STATE.ES_CONTINUOUS
-				| EXECUTION_STATE.ES_DISPLAY_REQUIRED
-				| EXECUTION_STATE.ES_SYSTEM_REQUIRED
-				| EXECUTION_STATE.ES_AWAYMODE_REQUIRED ) == 0 ) //Away mode for Windows >= Vista
-				SetThreadExecutionState( EXECUTION_STATE.ES_CONTINUOUS
-					| EXECUTION_STATE.ES_DISPLAY_REQUIRED
-					| EXECUTION_STATE.ES_SYSTEM_REQUIRED ); //Windows < Vista, forget away mode
+			SetThreadExecutionState( EXECUTION_STATE.ES_CONTINUOUS | EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_SYSTEM_REQUIRED | EXECUTION_STATE.ES_AWAYMODE_REQUIRED );
 		}
 
 		// ----------------------------------------------------------------------------------------------------------
 
-#if RLVISION
-		// -- Toggle NumLock Programmatically -----------------------------------------------------------------------
-		[DllImport( "user32", EntryPoint = "keybd_event", ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = true )]
-		private static extern void keybd_event( byte bVk, byte bScan, int dwFlags, int dwExtraInfo );
-		private const int VK_NUMLOCK = 0X90;
-		private const int KEYEVENTF_KEYDOWN = 0X0;
-		private const int KEYEVENTF_EXTENDEDKEY = 0X1;
-		private const int KEYEVENTF_KEYUP = 0X2;
-		public void ToggleNumlock()
-		{
-			keybd_event( VK_NUMLOCK, 0x45, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYDOWN, 0 );
-			keybd_event( VK_NUMLOCK, 0x45, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0 );
-		}
-		// ----------------------------------------------------------------------------------------------------------
-#endif
 
 		// -- Delete to recycle bin ---------------------------------------------------------------------------------
 
@@ -206,10 +185,6 @@ namespace VideoSift
 		[DllImport( "shell32.dll", CharSet = CharSet.Auto )]
 		static extern int SHFileOperation( ref SHFILEOPSTRUCT FileOp );
 
-		private object Shl;	// Shell.Application, late bound (no COM reference needed)
-		private const long ssfBITBUCKET = 10;
-		private const int recycleNAME = 0;
-		private const int recyclePATH = 1;
 
 		public void Recycle( string filePath )
 		{
@@ -228,6 +203,7 @@ namespace VideoSift
 		public bool Restore( string Item )
 		{
 			bool success = false;
+			object Shl = null;
 			try
 			{
 				Item = Item.Replace( @"\\", @"\" );	// restore is sensitive to double backslashes

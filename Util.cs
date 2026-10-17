@@ -164,52 +164,6 @@ namespace VideoSift
 			return Assembly.GetExecutingAssembly().GetName().Name;
 		}
 
-		/// <summary>
-		/// Get new position relative to start position for an index (array), with optional looparound
-		/// </summary>
-		/// <param name="indexSize">Size of index</param>
-		/// <param name="startPosition">Original index position</param>
-		/// <param name="relativeJump">Number of positions to jump ahead or back</param>
-		/// <param name="loopAround">If reaching either end of the index, do you want to loop and continue at the other end?</param>
-		/// <returns>New position in index</returns>
-		public static int IndexJump( int indexSize, int startPosition, int relativeJump, bool loopAround = true )
-		{
-			int newPosition = startPosition + relativeJump;
-			if( loopAround )
-			{
-				if( newPosition >= indexSize ) newPosition = 0 + ( newPosition - indexSize );
-				if( newPosition < 0 ) newPosition = indexSize - Math.Abs( newPosition );
-			}
-			newPosition = Math.Max( Math.Min( newPosition, indexSize - 1 ), 0 );
-			return newPosition;
-		}
-
-		/// <summary>
-		/// Parse command line: Split into string array, and strips " chars
-		/// </summary>
-		/// <param name="commandLine">Command line to parse</param>
-		/// <returns>String array with each command line item</returns>
-		public static string[] ParseArguments(string commandLine)
-		{
-			char[] parmChars = commandLine.ToCharArray();
-			bool inQuote = false;
-			for (int index = 0; index < parmChars.Length; index++)
-			{
-				if (parmChars[index] == '"')
-					inQuote = !inQuote;
-				if (!inQuote && parmChars[index] == ' ')
-					parmChars[index] = '\n';
-			}
-
-			string[] args = ( new string( parmChars ) ).Split( new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries );
-
-			for( int i=0; i<args.Length; i++ )
-			{
-				args[i] = args[i].Replace( "\"", "" );
-			}
-
-			return args;
-		}
 
 	}
 
