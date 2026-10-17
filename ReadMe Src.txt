@@ -15,9 +15,19 @@
 
       dotnet build -c Release
 
-    Output goes to bin\Release
-et48\. Ship the whole folder, including
+    Output goes to bin\Release\net48\. Ship the whole folder, including
     the "libvlc" subfolder.
+
+  Releases (GitHub):
+
+    .github/workflows/build.yml builds every push and pull request and
+    uploads the zipped app as a workflow artifact. Pushing a version tag
+    also stamps the version into the exe and publishes a GitHub release
+    with VideoSift-<tag>-win-x64.zip attached:
+
+      git tag v1.1
+      git push origin v1.1
+
 
   Video support:
 

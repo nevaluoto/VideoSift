@@ -117,8 +117,15 @@ namespace VideoSift
 			UpdateMenuEnabledDisabled();
 
 			// Attempt to load files or folders passed via command line
+			// (the first entry is the exe itself)
 			string[] args = Environment.GetCommandLineArgs();
-			if( args.Length > 0 ) AddFiles( args ); else ShowNextPic( 0 );
+			if( args.Length > 1 )
+			{
+				string[] files = new string[args.Length - 1];
+				Array.Copy( args, 1, files, 0, files.Length );
+				AddFiles( files );
+			}
+			else ShowNextPic( 0 );
 
 		}
 

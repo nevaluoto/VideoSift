@@ -49,75 +49,82 @@
 
 --- Getting Started -----------------------------------------------------------
 
-  This sections outlines how to use VideoSift for the first time:
+  This section outlines how to use VideoSift for the first time. Images and
+  videos are handled the same way: everything you add goes into one list
+  (the "image pool"), and you sort each file with a single key press.
 
   1. Set the base target folder
 
-	 The first thing you should do is to decide where images should end
-	 up when you press a key. On the "File" menu, select "Set Target Base
-	 Folder". (If you don't change this folder, it will default to the
-	 same folder as VideoSift.exe is located in)
+     First decide where files should end up when you press a key. On the
+     "File" menu, select "Set Target Base Folder". (If you don't change
+     this folder, it defaults to the folder VideoSift.exe is in.)
 
   2. Set file mode
 
-     VideoSift can either move or copy your files. Default is move. You
-	 may want to change this. On the "Edit" menu select "Settings". Locate
-	 "File Operations" to find the file mode. Also check the other file
-	 operation settings to make sure they suit your needs.
+     VideoSift can either move or copy your files. Default is move. To
+     change this, open "Edit" > "Settings" and look under "File
+     Operations". Check the other file operation settings too.
 
-  3. Add images
+  3. Add images and videos
 
-     Open the "Image Pool" menu and select either "Add Images" or "Add
-	 from Folder". The latter will let you choose a folder, and then locate
-	 all images and videos in that folder and its subfolders. You can also drag and
-	 drop images or folders onto the program to add them.
+     Open the "Image Pool" menu and select "Add Files" or "Add from
+     Folder". The latter lets you choose a folder, and then finds all
+     images and videos in that folder and its subfolders. You can also
+     drag and drop files or folders onto the window.
 
-  4. Browse the image pool
+  4. Browse the pool
 
-     Now that you have loaded images you can start browsing them. Press left
-	 and right to step forward and backwards in the image pool. See the hotkey
-	 section below to see what more you can do.
+     Press Right and Left to step forwards and backwards. Images are shown
+     to fit the window. Videos start playing automatically and loop, with a
+     control bar below them:
 
-  5. Press a Key
+       [Play/Pause] [------ seek ------] [time] [Loop] [Mute] [Volume]
 
-     When an image is displayed, press a letter or number key on the keyboard.
-	 Let's say that you press the "A" key. Now VideoSift will move (or copy)
-	 the image into a subfolder named "A" that is located in the folder that
-	 you decided on in step 1.
+     You can also use the keyboard: Enter plays/pauses, comma and period
+     seek backwards/forwards, Ctrl+L toggles looping and Ctrl+M mutes.
+     Clicking the video pauses it, double-clicking toggles fullscreen.
+     See the hotkey section below for everything else.
 
-     For example:	
-	   • Currently viewing: "c:\temp\pic.jpg"
-	   • Base target folder is: "d:\sorted\"
-	   • You Press "A"
-	   • Image is moved to: "d:\sorted\A\pic.jpg"
-	
-	 The next section describes how to change the destination folder
-	 associated with each key.
+  5. Press a key
+
+     When a file is displayed, press a letter or number key. Let's say you
+     press "A". VideoSift will move (or copy) the file into a subfolder
+     named "A" inside the folder you chose in step 1, and show the next
+     file. A playing video is stopped first, so it can be moved.
+
+     For example:
+       • Currently viewing: "c:\temp\clip.mp4"
+       • Base target folder is: "d:\sorted\"
+       • You press "A"
+       • The video is moved to: "d:\sorted\A\clip.mp4"
+
+     Made a mistake? Ctrl+Z undoes the last move, copy, rename or delete.
+
+     The next section describes how to change the destination folder
+     associated with each key.
 
 
 --- Destination Folders -------------------------------------------------------
 
-    The settings allows you to specify the destination folder associated with
-	each key. There are three ways to specify this:
+  In Settings you can choose the destination folder for each key. There
+  are three ways to set it:
 
-	1: Leave the field empty.
-	   This will use the key as destination folder. So if you pressed the "A"
-	   key, the image will end up in a subfolder name "A" located in the base
-	   target folder.
+  1: Leave the field empty.
+     The key name is used as the folder name. If you press "A", the file
+     goes into a subfolder named "A" in the base target folder.
 
-	2: Enter a custom name.
-	   This wil be used as the destination folder, located as a subfolder in
-	   the base target folder. Example: "Landscape Photos"
+  2: Enter a custom name.
+     This is used as the folder name, as a subfolder of the base target
+     folder. Example: "Holiday Videos"
 
-	3: Enter a complete path.
-       If you enter a complete path this will be used as the destination
-	   folder. Example: "c:\photos\portraits\"
+  3: Enter a complete path.
+     This is used as the destination folder as is.
+     Example: "c:\videos\keepers\"
 
-	You can change the base target folder from the "File" menu in the main
-	window. If you don't change this folder, it will default to the same folder
-	as VideoSift.exe is located in.
+  You can change the base target folder from the "File" menu. If you don't
+  change it, it defaults to the folder VideoSift.exe is in.
 
-	If the destination folder does not exist, it will be created automatically.
+  If the destination folder does not exist, it is created automatically.
 
 
 --- Hotkeys -------------------------------------------------------------------
@@ -126,30 +133,30 @@
   available keys:
 
   Navigate:
-   • Right/Down/PgDown/Space: Show next image
-   • Left/Up/PgUp: Show previous image
-   • Ctrl+Arrows: Skip 10 images forward/backwards
-   • Shift+Arrows: Skip 25 images forward/backwards
-   • Home/End: Go to first or last image
+   • Right/Down/PgDown/Space: Show next file
+   • Left/Up/PgUp: Show previous file
+   • Ctrl+Arrows: Skip 10 files forward/backwards
+   • Shift+Arrows: Skip 25 files forward/backwards
+   • Home/End: Go to first or last file
 
-  Mouse:
+  Mouse (images):
    • Left Mouse Button: Toggle scale vs actual size (1:1) mode
    • Right Mouse Button: Toggle zoom mode
    • Middle Mouse Button: Flip image vertically (*)
-   • MouseWheel: Next/previous image
+   • MouseWheel: Next/previous file
 
   File operations & image pool:
-   • A-Z and 0-9: Move or copy current image
+   • A-Z and 0-9: Move or copy current file
    • F9: Select base target folder
-   • Shift+Del: Deletes the current image
-   • Alt+Del: Deletes the current image to recycle bin
-   • Ctrl+Del: Remove the current image from the image pool
+   • Shift+Del: Deletes the current file
+   • Alt+Del: Deletes the current file to recycle bin
+   • Ctrl+Del: Remove the current file from the image pool
    • Del: Delete/Recycle/Remove depending on settings
-   • Insert: Opens a file dialog to add images to the image pool
-   • Ctrl+Insert: Add all images contained in a  folder and its subfolders
-   • F2: Lets you rename the currently displayed image file
+   • Insert: Opens a file dialog to add images and videos
+   • Ctrl+Insert: Add all images and videos in a folder and its subfolders
+   • F2: Rename the current file
    • Ctrl+Z: Undo last file operation (**)
-   • Ctrl+R: Randomize the order of the images' in the pool
+   • Ctrl+R: Randomize the order of the files in the pool
 
   Display
    • Ctrl+W: Opens input box to scale to specific width (in pixels)

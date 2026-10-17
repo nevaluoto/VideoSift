@@ -47,6 +47,8 @@
   <ItemGroup>
     <None Update="LICENSE.txt" CopyToOutputDirectory="PreserveNewest" />
     <None Update="ReadMe.txt" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="THIRD-PARTY-NOTICES.txt" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="licenses\LGPL-2.1.txt" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,31 @@
+VideoSift includes the following third-party components.
+
+--- PhotoSift ------------------------------------------------------------------
+
+  VideoSift is a fork of PhotoSift 1.11, Copyright (C) 2013-2014 RL Vision.
+  License: GNU General Public License v3 or later (see LICENSE.txt)
+  https://www.rlvision.com/photosift/about.php
+
+--- LibVLC (folder "libvlc") ---------------------------------------------------
+
+  LibVLC 3.0, Copyright (C) the VideoLAN team and VLC authors.
+  License: GNU Lesser General Public License v2.1 or later
+  (see licenses\LGPL-2.1.txt)
+  Source code: https://code.videolan.org/videolan/vlc
+  Binaries from the NuGet package VideoLAN.LibVLC.Windows.
+
+  Some LibVLC plugins use further libraries (for example FFmpeg/libavcodec)
+  under LGPL- or GPL-compatible licenses; their sources are available from
+  the VideoLAN project above.
+
+--- LibVLCSharp (LibVLCSharp.dll, LibVLCSharp.WinForms.dll) --------------------
+
+  Copyright (C) Videolabs SAS and LibVLCSharp contributors.
+  License: GNU Lesser General Public License v2.1 or later
+  (see licenses\LGPL-2.1.txt)
+  Source code: https://code.videolan.org/videolan/LibVLCSharp
+
+--- .NET libraries (System.*.dll) ----------------------------------------------
+
+  Copyright (C) .NET Foundation and Contributors.
+  License: MIT (https://github.com/dotnet/runtime/blob/main/LICENSE.TXT)
