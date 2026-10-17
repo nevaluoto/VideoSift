@@ -45,7 +45,7 @@ namespace VideoSift
 				// Create an instance of HookProc.
 				MouseHookProcedure = new HookProc( WinApi.MouseHookProc );
 
-				hHook = SetWindowsHookEx( WH_MOUSE, MouseHookProcedure, (IntPtr)0, AppDomain.GetCurrentThreadId() );
+				hHook = SetWindowsHookEx( WH_MOUSE, MouseHookProcedure, (IntPtr)0, GetCurrentThreadId() );
 				if( hHook == 0 )
 				{
 					MessageBox.Show( "SetWindowsHookEx Failed" );
@@ -101,6 +101,10 @@ namespace VideoSift
 		 CallingConvention = CallingConvention.StdCall )]
 		public static extern int SetWindowsHookEx( int idHook, HookProc lpfn,
 		IntPtr hInstance, int threadId );
+
+		// Native thread id of the calling thread (the hook needs the OS thread id, not ManagedThreadId)
+		[DllImport( "kernel32.dll" )]
+		static extern int GetCurrentThreadId();
 
 		//This is the Import for the UnhookWindowsHookEx function.
 		//Call this function to uninstall the hook.
